@@ -47,6 +47,7 @@ from transformers import (
     FLAX_MODEL_FOR_SEQ_TO_SEQ_CAUSAL_LM_MAPPING,
     AutoConfig,
     AutoTokenizer,
+    ViTFeatureExtractor,
     FlaxAutoModelForSeq2SeqLM,
     HfArgumentParser,
     TrainingArguments,
@@ -373,8 +374,8 @@ def main():
             model_args.tokenizer_name, cache_dir=model_args.cache_dir, use_fast=model_args.use_fast_tokenizer
         )
     elif model_args.model_name_or_path:
-        tokenizer = AutoTokenizer.from_pretrained(
-            model_args.model_name_or_path, cache_dir=model_args.cache_dir, use_fast=model_args.use_fast_tokenizer
+        tokenizer = ViTFeatureExtractor.from_pretrained(
+            model_args.model_name_or_path
         )
     else:
         raise ValueError(
